@@ -1,0 +1,4 @@
+select count(worker_id) as num_emp
+from worker
+where department = 'Admin'
+and month(joining_date) >= '4'
