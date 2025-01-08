@@ -1,0 +1,3 @@
+select sum(order_total) as total_sales_revenue
+from amazon_sales
+where date_format(order_date, '%Y') = '2021'
