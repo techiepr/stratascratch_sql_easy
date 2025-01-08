@@ -1,0 +1,6 @@
+select d.prod_sku_id,
+       d.market_name
+from dim_product d
+left join fct_customer_sales f
+on d.prod_sku_id = f.prod_sku_id
+where f.order_id is null
