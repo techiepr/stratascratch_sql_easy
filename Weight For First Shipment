@@ -1,0 +1,13 @@
+with cte as
+(
+select shipment_id,
+       min(shipment_date) as earliest_date
+from amazon_shipment
+group by 1
+)
+select a.shipment_id,
+       a.weight
+from amazon_shipment a
+join cte c
+on a.shipment_id = c.shipment_id
+where a.shipment_date = earliest_date
