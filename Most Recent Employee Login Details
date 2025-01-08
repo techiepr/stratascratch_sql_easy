@@ -1,0 +1,12 @@
+with cte as
+(
+select worker_id,
+       max(login_timestamp) as recent_login
+from worker_logins
+group by 1
+)
+select w.*
+from worker_logins w
+join cte c
+on w.worker_id = c.worker_id
+and w.login_timestamp = c.recent_login
