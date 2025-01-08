@@ -1,0 +1,5 @@
+select cust_id,
+       count(*) num_ids
+from dim_customer
+group by 1
+having num_ids > 1
