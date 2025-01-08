@@ -1,0 +1,12 @@
+with cte as
+(
+select shipment_id,
+       sum(weight) as total_weight,
+       dense_rank() over (order by sum(weight) desc) as dns_rnk
+from amazon_shipment
+group by 1
+)
+select shipment_id,
+       total_weight
+from cte
+where dns_rnk = 3
