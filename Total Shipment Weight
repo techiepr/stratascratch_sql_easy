@@ -1,0 +1,12 @@
+with cte as
+(
+select shipment_id,
+       sum(weight) as total_weight
+from amazon_shipment
+group by 1
+)
+select a.*,
+      c.total_weight
+from amazon_shipment a
+join cte c
+on a.shipment_id = c.shipment_id
