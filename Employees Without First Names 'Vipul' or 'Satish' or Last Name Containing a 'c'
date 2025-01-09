@@ -1,0 +1,4 @@
+select *
+from worker
+where first_name not in (lower('Vipul'), lower('Satish'))
+and lower(last_name) not like '%c%'
