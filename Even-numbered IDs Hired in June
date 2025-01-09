@@ -1,0 +1,4 @@
+select *
+from worker
+where month(joining_date) = '06'
+and worker_id % 2 = 0
