@@ -1,0 +1,4 @@
+select *
+from worker
+where length(first_name) = 6
+and lower(first_name) like '%h'
