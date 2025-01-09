@@ -1,0 +1,14 @@
+with cte as
+(
+select *,
+      rank() over (order by worker_id desc) as rnk
+from worker
+)
+select department,
+       first_name,
+       joining_date,
+       last_name,
+       salary,
+       worker_id
+from cte
+where rnk = 1
