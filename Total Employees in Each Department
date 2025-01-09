@@ -1,0 +1,4 @@
+select department,
+       count(*) as num_department
+from worker
+group by 1
