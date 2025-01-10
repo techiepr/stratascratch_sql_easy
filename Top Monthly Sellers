@@ -1,0 +1,18 @@
+with cte as
+(
+select seller_id,
+       total_sales,
+       product_category,
+       market_place,
+       sales_date,
+       dense_rank() over (partition by product_category order by total_sales desc) as dns_rnk
+from sales_data
+where month(sales_date) = '01'
+)
+select seller_id,
+       total_sales,
+       product_category,
+       market_place,
+       sales_date
+from cte
+where dns_rnk <= 3
