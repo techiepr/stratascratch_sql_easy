@@ -1,0 +1,20 @@
+with cte as
+(
+select device_type, 
+       concat(start_timestamp, ' to ', end_timestamp) as time_period,
+       sum(user_count) as total_users
+from user_activity
+group by 1,2 
+), cte1 as
+(
+select device_type,
+       time_period,
+       total_users,
+       rank() over (partition by device_type order by total_users desc) as rnk
+from cte
+)
+select total_users,
+       device_type,
+       time_period
+from cte1
+where rnk = 1
