@@ -1,0 +1,7 @@
+select distinct flight_id,
+       movie_id,
+       duration
+from entertainment_catalog e
+join flight_schedule f
+on e.duration <= f.flight_duration
+where flight_id = 101
