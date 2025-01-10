@@ -1,0 +1,6 @@
+select date_sub(date_format(week, '%Y-%m-%d'), interval 1 day) as weeks,
+       sum(quantity) as total_qty
+from orders_analysis
+where year(week) = 2023
+and quarter(week) = 1
+group by 1
