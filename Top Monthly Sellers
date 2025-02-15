@@ -16,3 +16,27 @@ select seller_id,
        sales_date
 from cte
 where dns_rnk <= 3
+
+
+------------X--------------
+
+
+
+with cte as
+(
+select *
+from sales_data
+where date_format(sales_date,'%m') = '01'
+), cte1 as
+(
+select *,
+       dense_rank() over (partition by product_category order by total_sales desc) as rnks
+from cte 
+)
+select seller_id,
+       total_sales,
+       product_category,
+       market_place,
+       sales_date
+from cte1
+where rnks <= 3
